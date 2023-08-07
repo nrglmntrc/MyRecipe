@@ -22,9 +22,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class SplashActivity  : BaseActivity(), EasyPermissions.RationaleCallbacks,
-    EasyPermissions.PermissionCallbacks {
-    private var READ_STORAGE_PERM = 123
+class SplashActivity  : BaseActivity(){
+    //, EasyPermissions.RationaleCallbacks, EasyPermissions.PermissionCallbacks {
+   // private var READ_STORAGE_PERM = 123
 
     private lateinit var binding: ActivitySplashBinding
 
@@ -33,7 +33,10 @@ class SplashActivity  : BaseActivity(), EasyPermissions.RationaleCallbacks,
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        readStorageTask()
+        clearDataBase()
+        getCategories()
+
+     //   readStorageTask()
 
         binding.btnGetStarted.setOnClickListener {
             var intent = Intent(this@SplashActivity, HomeActivity::class.java)
@@ -139,51 +142,51 @@ class SplashActivity  : BaseActivity(), EasyPermissions.RationaleCallbacks,
         }
     }
 
-    private fun hasReadStoragePermission(): Boolean {
-        return EasyPermissions.hasPermissions(
-            this,
-            android.Manifest.permission.READ_EXTERNAL_STORAGE
-        )
-    }
+//    private fun hasReadStoragePermission(): Boolean {
+//        return EasyPermissions.hasPermissions(
+//            this,
+//            android.Manifest.permission.READ_EXTERNAL_STORAGE
+//        )
+//    }
 
-    private fun readStorageTask() {
-        if (hasReadStoragePermission()) {
-            clearDataBase()
-            getCategories()
-        } else {
-            EasyPermissions.requestPermissions(
-                this,
-                "This app needs access to your storage,",
-                READ_STORAGE_PERM,
-                android.Manifest.permission.READ_EXTERNAL_STORAGE
-            )
-        }
-    }
+//    private fun readStorageTask() {
+//        if (hasReadStoragePermission()) {
+//            clearDataBase()
+//            getCategories()
+//        } else {
+//            EasyPermissions.requestPermissions(
+//                this,
+//                "This app needs access to your storage,",
+//                READ_STORAGE_PERM,
+//                android.Manifest.permission.READ_EXTERNAL_STORAGE
+//            )
+//        }
+//    }
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
-    }
-
-    override fun onRationaleDenied(requestCode: Int) {
-
-    }
-
-    override fun onRationaleAccepted(requestCode: Int) {
-
-    }
-
-    override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {
-        if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
-            AppSettingsDialog.Builder(this).build().show()
-        }
-    }
-
-    override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {
-
-    }
+//    override fun onRequestPermissionsResult(
+//        requestCode: Int,
+//        permissions: Array<out String>,
+//        grantResults: IntArray
+//    ) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+//        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
+//    }
+//
+//    override fun onRationaleDenied(requestCode: Int) {
+//
+//    }
+//
+//    override fun onRationaleAccepted(requestCode: Int) {
+//
+//    }
+//
+//    override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {
+//        if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
+//            AppSettingsDialog.Builder(this).build().show()
+//        }
+//    }
+//
+//    override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {
+//
+//    }
 }
