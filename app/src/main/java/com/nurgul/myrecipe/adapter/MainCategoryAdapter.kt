@@ -30,6 +30,7 @@ class MainCategoryAdapter : RecyclerView.Adapter<MainCategoryAdapter.RecipeViewH
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
         val binding = ItemRvMainCategoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        ctx=parent.context
 
         return RecipeViewHolder(binding)
     }

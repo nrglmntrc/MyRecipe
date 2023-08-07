@@ -56,7 +56,7 @@ class DetailActivity : BaseActivity() {
                 response: Response<MealResponse>
             ) {
 
-                Glide.with(this@DetailActivity).load(response.body()!!.mealsEntity[0].strmealthumb).into(imgItem)
+                Glide.with(this@DetailActivity).load(response.body()!!.mealsEntity[0].strmealthumb).into(binding.imgItem)
 
                 binding.tvCategory.text = response.body()!!.mealsEntity[0].strmeal
 

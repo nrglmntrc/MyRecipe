@@ -24,6 +24,7 @@ class SubCategoryAdapter: RecyclerView.Adapter<SubCategoryAdapter.RecipeViewHold
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecipeViewHolder {
         val binding= ItemRvSubCategoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        ctx=parent.context
 
         return RecipeViewHolder(binding)   }
 
